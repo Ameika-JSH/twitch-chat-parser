@@ -24,8 +24,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-rl.question('video id : ', (answer) => {
-	var id = answer;
+rl.question('video id : ', (id) => {	
 	var smi_arr = [];  
   
 	var res = request('GET','https://api.twitch.tv/v5/videos/' + id + '/comments?content_offset_seconds=0&client_id=2gw2reattwb1cj79nyi7uypplw9zey');
@@ -73,8 +72,8 @@ rl.question('video id : ', (answer) => {
 	
 	smi += '</BODY>\n</SAMI>';
 		
-	fs.writeFileSync('chat.txt',data,err=>console.log(err));
-	fs.writeFileSync('chat.smi',smi,err=>console.log(err));
+	fs.writeFileSync(id + '.txt',data,err=>console.log(err));
+	fs.writeFileSync(id + '.smi',smi,err=>console.log(err));
   
   
 	rl.close();
